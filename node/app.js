@@ -4,61 +4,95 @@
 
 $(document).ready(function () {
 
-
-
     var currentTime = moment();    // 
     var startTime = moment('09:00 am', "hh:mm a");
     var endTime = moment('5:00 pm', "hh:mm a")
     var arrHoursMoment = [];
-    arrHoursMoment.push(startTime.format("h A"));
+    var arrHtml = [];
+    arrHoursMoment.push(startTime.format("HH"));
 
     for (var i = 1; i < 9; i++) {
 
 
-        arrHoursMoment.push(startTime.add(i, "hours").subtract(i - 1, "hours").format("h A"));
-    }
-    console.log(arrHoursMoment);
-
-    for (var i = 0; i < arrHoursMoment.length; i++) {
-
-        $(".container").append(`
-
-                 <div class="row text-center">
-                 <div class="col">
-                  <div class="div hour">
-                    <span class="show-hour">${arrHoursMoment[i]}</span>
-               </div>
-               </div>
-            <div class="col-10">
-                  <textarea class="textDisplay" name="" data-id=${i} cols="30" rows="10"></textarea>
-               </div>
-               <div class="col text-center">
-              <button class="saveBtn"></button>
-                </div>
-              </div>`);
+        arrHoursMoment.push(startTime.add(i, "hours").subtract(i - 1, "hours").format("HH"));
     }
 
+    startTime = moment('09:00 am', "hh:mm a");
 
     var parseCurrentTime = parseInt(currentTime.hours());
     var parseStartTime = parseInt(startTime.hours());
     var parseEndTime = parseInt(endTime.hours());
+    var parseArrHoursMoment = [];
 
-    if (parseCurrentTime > 18 || parseCurrentTime < 8) {
+    for (var i = 0; i < arrHoursMoment.length; i++) {
 
-        $(".textDisplay").attr("class", "past");
-        //     console.log('is between')
-    } else if (parseCurrentTime > parseStartTime) {
-
-        $(".textDisplay").attr("class", "past");
-
-        if (parseCurrentTime < parseEndTime) {
-
-            $(".textDisplay").attr("class", "future");
-        }
-    } else {
-
-        $(".textDisplay").attr("class", "present");
+        parseArrHoursMoment[i] = parseInt(arrHoursMoment[i]);
     }
+
+    console.log(typeof parseArrHoursMoment);
+
+    for (var i = 0; i < arrHoursMoment.length; i++) {
+
+
+        arrHtml.push(`
+
+       <div class="row text-center">
+       <div class="col">
+        <div class="div hour">
+          <span class="show-hour">${arrHoursMoment[i]}</span>
+     </div>
+     </div>
+       <div class="col-10">
+        <textarea class="textDisplay" data-id="${i}"  cols="30" rows="10"></textarea>
+     </div>
+     <div class="col text-center">
+    <button class="saveBtn"></button>
+      </div>
+    </div>`);
+
+        $(".container").append(arrHtml[i]);
+
+        if (parseCurrentTime === parseArrHoursMoment[i]) {
+
+            $(".textDisplay").eq(i).attr("class", "present");
+        }
+
+    }
+
+
+
+
+    // for (var i = 0; i < arrHtml.length; i++) {
+    //     if (parseCurrentTime === parseArrHoursMoment[i]) {
+
+    //         $(".textDisplay").eq(i).attr("class", "past");
+    //     }
+
+
+    // }
+
+    // $(".textDisplay").each(function () {
+    //     var link = $(this).attr("data-id");
+    //     console.log(link);
+    // });
+
+    // if (parseCurrentTime > 18 || parseCurrentTime < 8) {
+
+    //     $(".textDisplay").attr("class", "past");
+    //     //     console.log('is between')
+    // } else if (parseCurrentTime > parseStartTime) {
+
+    //     $(".textDisplay").attr("class", "past");
+
+    //     if (parseCurrentTime < parseEndTime) {
+
+    //         $(".textDisplay").attr("class", "future");
+    //     }
+    // } else {
+
+    //     $(".textDisplay").attr("class", "present");
+    // }
+
 
 
 });
