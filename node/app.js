@@ -52,29 +52,80 @@ $(document).ready(function () {
 
         $(".container").append(arrHtml[i]);
 
-        if (parseCurrentTime === parseArrHoursMoment[i]) {
 
-            $(".textDisplay").eq(i).attr("class", "present");
-        }
+
+
+        // if (parseCurrentTime === parseArrHoursMoment[i]) {
+        //     console.log("im here");
+        //     $(".textDisplay").eq(i).attr("class", "present");
+        // }
+        // if (parseCurrentTime < parseEndTime) {
+
+        //     $(".textDisplay").eq(i).attr("class", "past");
+        // }
+        // if (parseCurrentTime > parseArrHoursMoment[i]) {
+        //     console.log(i);
+        //     $(".textDisplay").eq(i).attr("class", "past");
+        //     $(".textDisplay").attr("class", "past");
+        // } else if (parseCurrentTime > parseArrHoursMoment[i] && parseCurrentTime < parseEndTime) {
+        //     $(".textDisplay").eq(i).attr("class", "future");
+        //     $(".textDisplay").attr("class", "future");
+        // } else {
+
+        //     console.log("dhsjh")
+        // }
+
+
+    }
+    var classGet;
+    for (var i = 0; i < parseArrHoursMoment.length; i++) {
 
     }
 
+    for (var i = 0; i < parseArrHoursMoment.length; i++) {
 
+        if (parseCurrentTime > parseArrHoursMoment[i]) {
+            classGet = $(".textDisplay").eq(i).attr("class");
+            if (classGet === "textDisplay") {
+                $(".textDisplay").eq(i).addClass("past");
+            }
 
+        } else if (parseCurrentTime === parseArrHoursMoment[i]) {
 
-    // for (var i = 0; i < arrHtml.length; i++) {
-    //     if (parseCurrentTime === parseArrHoursMoment[i]) {
+            $(".textDisplay").eq(i).addClass("present");
+            classGet = $(".textDisplay").eq(i).attr("class");
+            console.log(classGet);
+        } else {
 
-    //         $(".textDisplay").eq(i).attr("class", "past");
+            $(".textDisplay").eq(i).addClass("future");
+        }
+    }
+
+    // if (parseCurrentTime > parseArrHoursMoment[i]) {
+
+    //     for (var j = 0; j < i; j++) {
+
+    //         $(".textDisplay").eq(j).attr("class", "past");
     //     }
-
-
     // }
+
+
 
     // $(".textDisplay").each(function () {
     //     var link = $(this).attr("data-id");
     //     console.log(link);
     // });
+
+    // var text = $(".textDisplay");
+    // for (var i = 0; i < text.length; i++) {
+
+    //     var link = text.eq(i).attr("data-id");
+    //     console.log(link)
+    // }
+
+
+
+
 
     // if (parseCurrentTime > 18 || parseCurrentTime < 8) {
 
