@@ -5,6 +5,120 @@
 $(document).ready(function () {
 
 
+
+    var currentTime = moment();    // 
+    var startTime = moment('09:00 am', "hh:mm a");
+    var endTime = moment('5:00 pm', "hh:mm a")
+    var arrHoursMoment = [];
+    arrHoursMoment.push(startTime.format("h A"));
+
+    for (var i = 1; i < 9; i++) {
+
+
+        arrHoursMoment.push(startTime.add(i, "hours").subtract(i - 1, "hours").format("h A"));
+    }
+    console.log(arrHoursMoment);
+
+    for (var i = 0; i < arrHoursMoment.length; i++) {
+
+        $(".container").append(`
+
+                 <div class="row text-center">
+                 <div class="col">
+                  <div class="div hour">
+                    <span class="show-hour">${arrHoursMoment[i]}</span>
+               </div>
+               </div>
+            <div class="col-10">
+                  <textarea class="textDisplay" name="" data-id=${i} cols="30" rows="10"></textarea>
+               </div>
+               <div class="col text-center">
+              <button class="saveBtn"></button>
+                </div>
+              </div>`);
+    }
+
+
+    var parseCurrentTime = parseInt(currentTime.hours());
+    var parseStartTime = parseInt(startTime.hours());
+    var parseEndTime = parseInt(endTime.hours());
+
+    if (parseCurrentTime > 18 || parseCurrentTime < 8) {
+
+        $(".textDisplay").attr("class", "past");
+        //     console.log('is between')
+    } else if (parseCurrentTime > parseStartTime) {
+
+        $(".textDisplay").attr("class", "past");
+
+        if (parseCurrentTime < parseEndTime) {
+
+            $(".textDisplay").attr("class", "future");
+        }
+    } else {
+
+        $(".textDisplay").attr("class", "present");
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // console.log(currentTime.format("h A"));
+    // console.log(startTime.format("h A"));
+    // console.log(endTime.format("h A"));
+//     console.log("-------------------------");
+// var x = parseInt(startTime.format("h"));
+// console.log(x);
+// var y = parseInt(endTime.format("h"));
+    // console.log(parseInt(endTime));
+    // for (var i = x; i < 18; i++) {
+
+  //     arrHours.push(i);
+
+
+    // for (var i = 0; i < arrHours.length; i++) {
+
+    //     $(".container").append(`
+
+    //              <div class="row text-center">
+    //              <div class="col">
+    //               <div class="div hour">
+    //                 <span class="show-hour">${arrHours[i] + "AM"}</span>
+    //            </div>
+    //            </div>
+    //         <div class="col-10">
+    //               <textarea class="present" name="" id="" cols="30" rows="10"></textarea>
+    //            </div>
+    //            <div class="col text-center">
+    //           <button class="saveBtn"></button>
+    //             </div>
+    //           </div>`);
+    // }
+
+//     if (startTime.isBefore(endTime)) {
+
+//     console.log("True");
+// } else {
+
+//     console.log("false");
+// }
+
+
+
+
     // var time = [
     //     {
     //         year: moment().startOf('year').format("YYYY"),
@@ -28,60 +142,60 @@ $(document).ready(function () {
     // var endOfMonth = moment().endOf('Month').format("MM");
     // console.log(endOfMonth);
 
-    var arrHours = [];
+    // var arrHours = [];
 
 
-    for (var i = 24; i > 0; i--) {
+    // for (var i = 24; i > 0; i--) {
 
-        arrHours.push(moment().add(i, "hours").format("h A"));
+    //     arrHours.push(moment().add(i, "hours").format("h A"));
 
-    }
+    // }
 
-    var temp = moment().format("h A");
-    console.log(temp);
-    console.log(arrHours[0])
+    // var temp = moment().format("h A");
+    // console.log(temp);
+    // console.log(arrHours[0])
 
-    for (var i = 0; i < 9; i++) {
+    // for (var i = 0; i < 9; i++) {
 
-        if (temp === arrHours[i]) {
+    //     if (temp === arrHours[i]) {
 
-            $(".container").append(`
+    //         $(".container").append(`
 
-                <div class="row text-center">
-                <div class="col">
-                  <div class="div hour">
-                    <span class="show-hour">${arrHours[i]}</span>
-                  </div>
-                </div>
-                <div class="col-10">
-                  <textarea class="present" name="" id="" cols="30" rows="10"></textarea>
-                </div>
-                <div class="col text-center">
-                  <button class="saveBtn"></button>
-                </div>
-              </div>`);
-        } else if (temp !== arrHours[i]) {
+    //             <div class="row text-center">
+    //             <div class="col">
+    //               <div class="div hour">
+    //                 <span class="show-hour">${arrHours[i]}</span>
+    //               </div>
+    //             </div>
+    //             <div class="col-10">
+    //               <textarea class="present" name="" id="" cols="30" rows="10"></textarea>
+    //             </div>
+    //             <div class="col text-center">
+    //               <button class="saveBtn"></button>
+    //             </div>
+    //           </div>`);
+    //     } else if (temp !== arrHours[i]) {
 
-            $(".container").append(`
+    //         $(".container").append(`
 
-                <div class="row text-center">
-                <div class="col">
-                  <div class="div hour">
-                    <span class="show-hour">${arrHours[i]}</span>
-                  </div>
-                </div>
-                <div class="col-10">
-                  <textarea class="past" name="" id="" cols="30" rows="10"></textarea>
-                </div>
-                <div class="col text-center">
-                  <button class="saveBtn"></button>
-                </div>
-              </div>`);
+    //             <div class="row text-center">
+    //             <div class="col">
+    //               <div class="div hour">
+    //                 <span class="show-hour">${arrHours[i]}</span>
+    //               </div>
+    //             </div>
+    //             <div class="col-10">
+    //               <textarea class="past" name="" id="" cols="30" rows="10"></textarea>
+    //             </div>
+    //             <div class="col text-center">
+    //               <button class="saveBtn"></button>
+    //             </div>
+    //           </div>`);
 
-        }
+    //     }
 
 
-    }
+    // }
 
 
     // }
@@ -89,7 +203,7 @@ $(document).ready(function () {
     //     console.log("hello");
 
 
-});
+
 
 
 
