@@ -11,6 +11,7 @@ $(document).ready(function () {
     var arrHtml = [];
     arrHoursMoment.push(startTime.format("HH"));
 
+    $("#currentDay").text(moment().format("LL HH:mm:ss"));
     for (var i = 1; i < 9; i++) {
 
 
@@ -34,19 +35,20 @@ $(document).ready(function () {
     for (var i = 0; i < arrHoursMoment.length; i++) {
 
 
+
         arrHtml.push(`
 
        <div class="row text-center">
        <div class="col">
         <div class="div hour">
-          <span class="show-hour">${arrHoursMoment[i]}</span>
+          <span class="show-hour"><i class="fas fa-business-time">${arrHoursMoment[i] + ":00"}</i></span>
      </div>
      </div>
        <div class="col-10">
         <textarea class="textDisplay" data-id="${i}"  cols="30" rows="10"></textarea>
      </div>
      <div class="col text-center">
-    <button class="saveBtn" data-id=${i}></button>
+    <button class="saveBtn" data-id=${i}><i class="far fa-save"> Save</i></button>
       </div>
     </div>`);
 
@@ -58,7 +60,9 @@ $(document).ready(function () {
     for (var i = 0; i < parseArrHoursMoment.length; i++) {
 
         if (parseCurrentTime > parseArrHoursMoment[i]) {
+
             classGet = $(".textDisplay").eq(i).attr("class");
+
             if (classGet === "textDisplay") {
                 $(".textDisplay").eq(i).addClass("past");
             }
@@ -106,7 +110,7 @@ $(document).ready(function () {
     }
 
     $(".container").prepend(`<div class="col-12 text-right">
-    <input class="btn btn-primary" type="reset" value="Reset"></input>
+    <i class="fas fa-eraser"><input class="btn btn-primary" type="reset" value="Reset"></input></i>
       </div>`)
 
     $(".btn").on("click", function () {
