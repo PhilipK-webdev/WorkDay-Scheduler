@@ -46,42 +46,15 @@ $(document).ready(function () {
         <textarea class="textDisplay" data-id="${i}"  cols="30" rows="10"></textarea>
      </div>
      <div class="col text-center">
-    <button class="saveBtn"></button>
+    <button class="saveBtn" data-id=${i}></button>
       </div>
     </div>`);
 
         $(".container").append(arrHtml[i]);
 
-
-
-
-        // if (parseCurrentTime === parseArrHoursMoment[i]) {
-        //     console.log("im here");
-        //     $(".textDisplay").eq(i).attr("class", "present");
-        // }
-        // if (parseCurrentTime < parseEndTime) {
-
-        //     $(".textDisplay").eq(i).attr("class", "past");
-        // }
-        // if (parseCurrentTime > parseArrHoursMoment[i]) {
-        //     console.log(i);
-        //     $(".textDisplay").eq(i).attr("class", "past");
-        //     $(".textDisplay").attr("class", "past");
-        // } else if (parseCurrentTime > parseArrHoursMoment[i] && parseCurrentTime < parseEndTime) {
-        //     $(".textDisplay").eq(i).attr("class", "future");
-        //     $(".textDisplay").attr("class", "future");
-        // } else {
-
-        //     console.log("dhsjh")
-        // }
-
-
     }
+
     var classGet;
-    for (var i = 0; i < parseArrHoursMoment.length; i++) {
-
-    }
-
     for (var i = 0; i < parseArrHoursMoment.length; i++) {
 
         if (parseCurrentTime > parseArrHoursMoment[i]) {
@@ -101,13 +74,27 @@ $(document).ready(function () {
         }
     }
 
-    // if (parseCurrentTime > parseArrHoursMoment[i]) {
+    var getIdText = $(".textDisplay");
+    var arrText = [];
+    for (var i = 0; i < getIdText.length; i++) {
 
-    //     for (var j = 0; j < i; j++) {
+        arrText.push(parseInt(getIdText.eq(i).attr("data-id")));
+    }
 
-    //         $(".textDisplay").eq(j).attr("class", "past");
-    //     }
-    // }
+    $(document).on("click", ".saveBtn", function () {
+
+        var getIdBtn = parseInt($(this).attr("data-id"));
+
+        for (var i = 0; i < arrText.length; i++) {
+
+            if (getIdBtn === arrText[i]) {
+
+                console.log("hello");
+            }
+        }
+
+
+    });
 
 
 
@@ -123,169 +110,7 @@ $(document).ready(function () {
     //     console.log(link)
     // }
 
-
-
-
-
-    // if (parseCurrentTime > 18 || parseCurrentTime < 8) {
-
-    //     $(".textDisplay").attr("class", "past");
-    //     //     console.log('is between')
-    // } else if (parseCurrentTime > parseStartTime) {
-
-    //     $(".textDisplay").attr("class", "past");
-
-    //     if (parseCurrentTime < parseEndTime) {
-
-    //         $(".textDisplay").attr("class", "future");
-    //     }
-    // } else {
-
-    //     $(".textDisplay").attr("class", "present");
-    // }
-
-
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // console.log(currentTime.format("h A"));
-    // console.log(startTime.format("h A"));
-    // console.log(endTime.format("h A"));
-//     console.log("-------------------------");
-// var x = parseInt(startTime.format("h"));
-// console.log(x);
-// var y = parseInt(endTime.format("h"));
-    // console.log(parseInt(endTime));
-    // for (var i = x; i < 18; i++) {
-
-  //     arrHours.push(i);
-
-
-    // for (var i = 0; i < arrHours.length; i++) {
-
-    //     $(".container").append(`
-
-    //              <div class="row text-center">
-    //              <div class="col">
-    //               <div class="div hour">
-    //                 <span class="show-hour">${arrHours[i] + "AM"}</span>
-    //            </div>
-    //            </div>
-    //         <div class="col-10">
-    //               <textarea class="present" name="" id="" cols="30" rows="10"></textarea>
-    //            </div>
-    //            <div class="col text-center">
-    //           <button class="saveBtn"></button>
-    //             </div>
-    //           </div>`);
-    // }
-
-//     if (startTime.isBefore(endTime)) {
-
-//     console.log("True");
-// } else {
-
-//     console.log("false");
-// }
-
-
-
-
-    // var time = [
-    //     {
-    //         year: moment().startOf('year').format("YYYY"),
-    //         month: moment().startOf("month").format("MM"),
-    //         day: moment().startOf("day").format("DD"),
-    //         hour: moment().startOf("hour").format("h a")
-    //     },
-    // ];
-
-    // var time = moment().toObject();
-
-    // $("#currentDay").text(moment().format("MM/DD/YYYY"));
-    // console.log(moment().fromNow());
-    // console.log(time.years);
-    // var timeInt = parseInt(time[0].year);
-    // console.log(typeof timeInt);
-
-    // var time = moment().startOf('day');
-    // var time = moment().startOf('minute')
-    // console.log(time);
-    // var endOfMonth = moment().endOf('Month').format("MM");
-    // console.log(endOfMonth);
-
-    // var arrHours = [];
-
-
-    // for (var i = 24; i > 0; i--) {
-
-    //     arrHours.push(moment().add(i, "hours").format("h A"));
-
-    // }
-
-    // var temp = moment().format("h A");
-    // console.log(temp);
-    // console.log(arrHours[0])
-
-    // for (var i = 0; i < 9; i++) {
-
-    //     if (temp === arrHours[i]) {
-
-    //         $(".container").append(`
-
-    //             <div class="row text-center">
-    //             <div class="col">
-    //               <div class="div hour">
-    //                 <span class="show-hour">${arrHours[i]}</span>
-    //               </div>
-    //             </div>
-    //             <div class="col-10">
-    //               <textarea class="present" name="" id="" cols="30" rows="10"></textarea>
-    //             </div>
-    //             <div class="col text-center">
-    //               <button class="saveBtn"></button>
-    //             </div>
-    //           </div>`);
-    //     } else if (temp !== arrHours[i]) {
-
-    //         $(".container").append(`
-
-    //             <div class="row text-center">
-    //             <div class="col">
-    //               <div class="div hour">
-    //                 <span class="show-hour">${arrHours[i]}</span>
-    //               </div>
-    //             </div>
-    //             <div class="col-10">
-    //               <textarea class="past" name="" id="" cols="30" rows="10"></textarea>
-    //             </div>
-    //             <div class="col text-center">
-    //               <button class="saveBtn"></button>
-    //             </div>
-    //           </div>`);
-
-    //     }
-
-
-    // }
-
-
-    // }
-
-    //     console.log("hello");
 
 
 
