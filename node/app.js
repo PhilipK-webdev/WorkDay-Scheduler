@@ -89,27 +89,35 @@ $(document).ready(function () {
 
             if (getIdBtn === arrText[i]) {
 
-                console.log("hello");
+                var hours = arrHoursMoment[i];
+                var value = getIdText.eq(i).val();
+                window.localStorage.setItem(hours, JSON.stringify(value));
             }
         }
 
-
     });
 
+    for (var i = 0; i < arrText.length; i++) {
 
+        var hours = arrHoursMoment[i];
+        var value = JSON.parse(window.localStorage.getItem(hours));
+        getIdText.eq(i).val(value);
 
-    // $(".textDisplay").each(function () {
-    //     var link = $(this).attr("data-id");
-    //     console.log(link);
-    // });
+    }
 
-    // var text = $(".textDisplay");
-    // for (var i = 0; i < text.length; i++) {
+    $(".container").prepend(`<div class="col-12 text-right">
+    <input class="btn btn-primary" type="reset" value="Reset"></input>
+      </div>`)
 
-    //     var link = text.eq(i).attr("data-id");
-    //     console.log(link)
-    // }
+    $(".btn").on("click", function () {
 
+        window.localStorage.clear();
+        for (var i = 0; i < getIdText.length; i++) {
+
+            getIdText.eq(i).val("");
+        }
+
+    });
 });
 
 
