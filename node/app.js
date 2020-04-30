@@ -56,6 +56,10 @@ $(document).ready(function () {
             classGet = $(".textDisplay").eq(i).attr("class");
 
             if (classGet === "textDisplay") {
+
+                //if the textarea is colored past,
+                // that means that you cannot write any events or meetings 
+                //in this specific textarea
                 $(".textDisplay").eq(i).addClass("past");
             }
 
