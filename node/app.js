@@ -116,9 +116,9 @@ $(document).ready(function () {
     $(".btn").on("click", function () {
 
         window.localStorage.clear();
-        for (var i = 0; i < getIdText.length; i++) {
+        for (var i = 0; i < textDisplayArr.length; i++) {
 
-            getIdText.eq(i).val("");
+            textDisplayArr.eq(i).val("");
         }
 
     });
