@@ -7,7 +7,11 @@ $(document).ready(function () {
     var arrHtml = [];
 
     // set the time on p element using moment()
-    $("#currentDay").text(moment().format("LL HH:mm:ss"));
+    setInterval(function () {
+
+        $("#currentDay").text(moment().format("LL HH:mm:ss"));
+    }, 1000);
+
 
     // using format of 24 hours to display on the page
     arrHoursMoment.push(startTime.format("HH"));
@@ -24,12 +28,9 @@ $(document).ready(function () {
     var parseEndTime = parseInt(endTime.hours());
     var parseArrHoursMoment = [];
 
-    for (var i = 0; i < arrHoursMoment.length; i++) {
-
-        parseArrHoursMoment[i] = parseInt(arrHoursMoment[i]);
-    }
     // create dynamic html file
     for (var i = 0; i < arrHoursMoment.length; i++) {
+        parseArrHoursMoment[i] = parseInt(arrHoursMoment[i]);
         arrHtml.push(`
         <div class="row text-center">
         <div class="col">
@@ -48,37 +49,37 @@ $(document).ready(function () {
     }
 
     var classGet;
+    var textDisplayArr = $(".textDisplay");
     // conditions to set the background color of the textarea
     for (var i = 0; i < parseArrHoursMoment.length; i++) {
 
         if (parseCurrentTime > parseArrHoursMoment[i]) {
 
-            classGet = $(".textDisplay").eq(i).attr("class");
+            classGet = textDisplayArr.eq(i).attr("class");
 
             if (classGet === "textDisplay") {
 
                 //if the textarea is colored past,
                 // that means that you cannot write any events or meetings 
                 //in this specific textarea
-                $(".textDisplay").eq(i).addClass("past");
+                textDisplayArr.eq(i).addClass("past");
             }
 
         } else if (parseCurrentTime === parseArrHoursMoment[i]) {
 
-            $(".textDisplay").eq(i).addClass("present");
-            classGet = $(".textDisplay").eq(i).attr("class");
-            console.log(classGet);
+            textDisplayArr.eq(i).addClass("present");
+            classGet = textDisplayArr.eq(i).attr("class");
+
         } else {
 
-            $(".textDisplay").eq(i).addClass("future");
+            textDisplayArr.eq(i).addClass("future");
         }
     }
 
-    var getIdText = $(".textDisplay");
     var arrText = [];
-    for (var i = 0; i < getIdText.length; i++) {
+    for (var i = 0; i < textDisplayArr.length; i++) {
 
-        arrText.push(parseInt(getIdText.eq(i).attr("data-id")));
+        arrText.push(parseInt(textDisplayArr.eq(i).attr("data-id")));
     }
 
     // setting the local storage
@@ -91,7 +92,7 @@ $(document).ready(function () {
             if (getIdBtn === arrText[i]) {
 
                 var hours = arrHoursMoment[i];
-                var value = getIdText.eq(i).val();
+                var value = textDisplayArr.eq(i).val();
                 window.localStorage.setItem(hours, JSON.stringify(value));
             }
         }
@@ -102,7 +103,7 @@ $(document).ready(function () {
 
         var hours = arrHoursMoment[i];
         var value = JSON.parse(window.localStorage.getItem(hours));
-        getIdText.eq(i).val(value);
+        textDisplayArr.eq(i).val(value);
 
     }
 
