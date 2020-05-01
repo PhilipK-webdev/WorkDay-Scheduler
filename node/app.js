@@ -91,7 +91,7 @@ $(document).ready(function () {
 
             if (getIdBtn === arrText[i]) {
 
-                var hours = arrHoursMoment[i];
+                var hours = arrHoursMoment[i] + ":00";
                 var value = textDisplayArr.eq(i).val();
                 window.localStorage.setItem(hours, JSON.stringify(value));
             }
@@ -101,7 +101,7 @@ $(document).ready(function () {
     // get from local storage
     for (var i = 0; i < arrText.length; i++) {
 
-        var hours = arrHoursMoment[i];
+        var hours = arrHoursMoment[i] + ":00";
         var value = JSON.parse(window.localStorage.getItem(hours));
         textDisplayArr.eq(i).val(value);
 
