@@ -24,9 +24,10 @@ On this project i will demonstrate how to use javascript side by side with jQuer
 
 * To start using the Web Page the User need to clone the project,
 git clone "url".
-* Next thing - using Moment.js
+*  Using Moment-js -https://momentjs.com/.
 * Moment.js - Documentation.
-* Install moment.js with Node or copy a script from cdn.
+* Install moment.js with Node or copy a script - https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/locale/af.min.js
+* Using link - https://use.fontawesome.com/releases/v5.8.1/css/all.css;
 
 ### Prerequisites
 

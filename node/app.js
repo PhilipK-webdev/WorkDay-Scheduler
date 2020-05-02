@@ -55,20 +55,14 @@ $(document).ready(function () {
 
         if (parseCurrentTime > parseArrHoursMoment[i]) {
 
-            classGet = textDisplayArr.eq(i).attr("class");
-
-            if (classGet === "textDisplay") {
-
-                //if the textarea is colored past,
-                // that means that you cannot write any events or meetings 
-                //in this specific textarea
-                textDisplayArr.eq(i).addClass("past");
-            }
+            //if the textarea is colored past,
+            //     // that means that you cannot write any events or meetings 
+            //     //in this specific textarea
+            textDisplayArr.eq(i).addClass("past");
 
         } else if (parseCurrentTime === parseArrHoursMoment[i]) {
 
             textDisplayArr.eq(i).addClass("present");
-            classGet = textDisplayArr.eq(i).attr("class");
 
         } else {
 
