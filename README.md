@@ -42,3 +42,4 @@ Visual Studio Code / Sublime Text.
 ## Authors
 
 - Philip Kouchner
+- Github link - https://philipk-webdev.github.io/WorkDay-Scheduler/
